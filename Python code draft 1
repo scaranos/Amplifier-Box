@@ -22,3 +22,6 @@ while i < 10:
     print(templist)
     
     #print(temp)
+
+#new cell
+Serial.close()
