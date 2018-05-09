@@ -1,0 +1,24 @@
+import sys
+!conda install --yes --prefix {sys.prefix} pyserial
+
+
+#new cell
+#incomplete. still has many mistakes
+import serial
+import time
+import numpy
+Serial = serial.Serial('COM3',9600)
+
+templist = numpy.chararray(1,10)
+while i < 10:
+    inByte = Serial.readline();
+    analog = int(inByte)
+    #print(analog)
+    temp = ((analog*5000/1024)-500)/10
+    #print(numpy.array(temp))
+    tempstring = str(temp)
+    values = tempstring.split('\n')
+    templist[:] = values
+    print(templist)
+    
+    #print(temp)
