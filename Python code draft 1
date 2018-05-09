@@ -3,14 +3,18 @@ import sys
 
 
 #new cell
-#incomplete. still has many mistakes
 import serial
 import time
 import numpy
+import matplotlib.pyplot as plt
 Serial = serial.Serial('COM3',9600)
 
-templist = numpy.chararray(1,10)
-while i < 10:
+templist = []
+timeout = time.time() + 35
+while True:
+    test = 0
+    if test == 5 or time.time() > timeout:
+        break
     inByte = Serial.readline();
     analog = int(inByte)
     #print(analog)
@@ -18,10 +22,44 @@ while i < 10:
     #print(numpy.array(temp))
     tempstring = str(temp)
     values = tempstring.split('\n')
-    templist[:] = values
-    print(templist)
+    templist.append(values)
     
-    #print(temp)
+#print(templist)
+
+t1 = templist[0::8]
+t2 = templist[1::8]
+t3 = templist[2::8]
+t4 = templist[3::8]
+t5 = templist[4::8]
+t6 = templist[5::8]
+t7 = templist[6::8]
+t8 = templist[7::8]
+
+print(t1)
+print(t2)
+print(t3)
+print(t4)
+print(t5)
+print(t6)
+print(t7)
+print(t8)
+
+x = [1,2,3,4,5]
+
+plt.plot(x,t1,'bd', label = 'Amplifier 1')
+plt.plot(x,t2,'gd', label = 'Amplifier 2')
+#plt.plot(x,t3,'b-', label = 'Amplifier 3')
+plt.plot(x,t4,'rd', label = 'Amplifier 4')
+plt.plot(x,t5,'cd', label = 'Amplifier 5')
+plt.plot(x,t6,'md', label = 'Amplifier 6')
+plt.plot(x,t7,'yd', label = 'Amplifier 7')
+plt.plot(x,t8,'kd', label = 'Amplifier 8')
+plt.ylabel('Temperature (Celsius)')
+plt.legend()
+plt.show()
+
+#on this plot I didn't want the outlier value of Amp3 to overpower the discrepancies shown between the other amplifiers, so i commented it out
+    
 
 #new cell
 Serial.close()
