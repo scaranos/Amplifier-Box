@@ -1,0 +1,95 @@
+#must have the excel files that detail the spectrum analyzer data at every step. these are found at C:\Users\monroelab\Sophia\2018\Untitled Folder
+
+import pandas as pd
+import numpy
+import matplotlib.pyplot as plt
+data1 = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\80mhzfile.xlsx')
+data2 = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take1_554pm.xlsx')
+data3 = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take3_910pm.xlsx')
+data4 = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take4_1024pm.xlsx')
+data5 = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take5_1044pm.xlsx')
+data6 = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take6_1105pm.xlsx')
+
+
+dt1 = data1.as_matrix()
+dx1 = dt1[:,0]
+dy1 = dt1[:,1]
+max1 = numpy.amax(dy1)
+
+dt2 = data2.as_matrix()
+dx2 = dt2[:,0]
+dy2 = dt2[:,1]
+t2 = 29.7400841346
+max2 = numpy.amax(dy2)
+
+dt3 = data3.as_matrix()
+dx3 = dt3[:,0]
+dy3 = dt3[:,1]
+t3 = 28.4630408654
+max3 = numpy.amax(dy3)
+
+dt4 = data4.as_matrix()
+dx4 = dt4[:,0]
+dy4 = dt4[:,1]
+t4 = 29.5648036859
+max4 = numpy.amax(dy4)
+
+dt5 = data5.as_matrix()
+dx5 = dt5[:,0]
+dy5 = dt5[:,1]
+t5 = 30.0656049679
+max5 = numpy.amax(dy5)
+
+dt6 = data6.as_matrix()
+dx6 = dt6[:,0]
+dy6 = dt6[:,1]
+t6 = 31.5179286859
+max6 = numpy.amax(dy6)
+
+plt.plot(dx1,dy1,'bd-', label = '80MHz spread', linewidth=1)
+plt.plot(dx2,dy2,'ro-', label = '29.74008 C 5:54 pm', linewidth=1)
+plt.xlabel('Hz')
+plt.ylabel('dB')
+plt.legend()
+plt.show()
+
+plt.plot(dx1,dy1,'bd-', label = '80MHz spread', linewidth=1)
+plt.plot(dx3,dy3,'go-', label = '28.625801 C 9:10 pm', linewidth=1)
+plt.xlabel('Hz')
+plt.ylabel('dB')
+plt.legend()
+plt.show()
+
+plt.plot(dx1,dy1,'bd-', label = '80MHz spread', linewidth=1)
+plt.plot(dx4,dy4,'co-', label = '29.5648036859 C 10:24 pm', linewidth=1)
+plt.xlabel('Hz')
+plt.ylabel('dB')
+plt.legend()
+plt.show()
+
+plt.plot(dx1,dy1,'bd-', label = '80MHz spread', linewidth=1)
+plt.plot(dx5,dy5,'yo-', label = '30.0656049679 C 10:44 pm', linewidth=1)
+plt.xlabel('Hz')
+plt.ylabel('dB')
+plt.legend()
+plt.show()
+
+plt.plot(dx1,dy1,'bd-', label = '80MHz spread', linewidth=1)
+plt.plot(dx6,dy6,'ko-', label = '30.0656049679 C 11:05 pm', linewidth=1)
+plt.xlabel('Hz')
+plt.ylabel('dB')
+plt.legend()
+plt.show()
+
+print(max1, max2, max3, max4, max5, max6)
+temps = [t2, t3, t4, t5, t6]
+Max = [max2, max3, max4, max5, max6]
+plt.plot(t2, max2, 'ro', label = t2)
+plt.plot(t3, max3, 'go', label = t3)
+plt.plot(t4, max4, 'co', label = t4)
+plt.plot(t5, max5, 'yo', label = t5)
+plt.plot(t6, max6, 'ko', label = t6)
+plt.xlabel('temperature of amplifier (C)')
+plt.ylabel('max output (dB)')
+plt.legend()
+plt.show()
