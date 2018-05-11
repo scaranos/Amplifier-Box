@@ -44,7 +44,7 @@ print(t6)
 print(t7)
 print(t8)
 
-x = [1,2,3,4,5]
+x = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39]
 
 plt.plot(x,t1,'bd-', label = 'Amplifier 1', linewidth=1)
 plt.plot(x,t2,'gd-', label = 'Amplifier 2', linewidth=1)
@@ -59,7 +59,16 @@ plt.legend()
 plt.show()
 
 #on this plot I didn't want the outlier value of Amp3 to overpower the discrepancies shown between the other amplifiers, so i commented it out
-    
+
+t1avg = numpy.mean([float(i) for i in numpy.array(t1)[:,0]])
+t2avg = numpy.mean([float(i) for i in numpy.array(t2)[:,0]])
+t3avg = numpy.mean([float(i) for i in numpy.array(t3)[:,0]])
+t4avg = numpy.mean([float(i) for i in numpy.array(t4)[:,0]])
+t5avg = numpy.mean([float(i) for i in numpy.array(t5)[:,0]])
+t6avg = numpy.mean([float(i) for i in numpy.array(t6)[:,0]])
+t7avg = numpy.mean([float(i) for i in numpy.array(t7)[:,0]])
+t8avg = numpy.mean([float(i) for i in numpy.array(t8)[:,0]])
+print(t1avg, t2avg, t3avg, t4avg, t5avg, t6avg, t7avg, t8avg)
 
 #new cell
 Serial.close()
