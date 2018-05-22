@@ -3,30 +3,40 @@
 import pandas as pd
 import numpy
 import matplotlib.pyplot as plt
+from matplotlib import pylab
+import scipy
+from scipy import optimize
+
 data1 = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\80mhzfile.xlsx')
 data2 = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take1_554pm.xlsx')
 data3 = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take3_910pm.xlsx')
 data4 = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take4_1024pm.xlsx')
 data5 = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take5_1044pm.xlsx')
 data6 = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take6_1105pm.xlsx')
-
+data7 = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take7_1018am.xlsx')
+data8 = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take8_1049am.xlsx')
+data9 = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take9_1247pm.xlsx')
+######
+data1a = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take1round2_initialsignal.xlsx')
+datafan = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\fantake.xlsx')
+data2a = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take3r15.xlsx')
+data3a = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take2_148c.xlsx')
+data4a = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take4r14_6c.xlsx')
+data5a = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take5r14_4.xlsx')
+data6a = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take6r14_2.xlsx')
+data7a = pd.read_excel(r'C:\Users\monroelab\Sophia\2018\Untitled Folder\take7r14.xlsx')
 
 dt1 = data1.as_matrix()
 dx1 = dt1[:,0]
 dy1 = dt1[:,1]
 max1 = numpy.amax(dy1)
+print(max1)
 
 dt2 = data2.as_matrix()
 dx2 = dt2[:,0]
 dy2 = dt2[:,1]
 t2 = 29.7400841346
 max2 = numpy.amax(dy2)
-
-dt3 = data3.as_matrix()
-dx3 = dt3[:,0]
-dy3 = dt3[:,1]
-t3 = 28.4630408654
-max3 = numpy.amax(dy3)
 
 dt4 = data4.as_matrix()
 dx4 = dt4[:,0]
@@ -46,50 +56,195 @@ dy6 = dt6[:,1]
 t6 = 31.5179286859
 max6 = numpy.amax(dy6)
 
-plt.plot(dx1,dy1,'bd-', label = '80MHz spread', linewidth=1)
-plt.plot(dx2,dy2,'ro-', label = '29.74008 C 5:54 pm', linewidth=1)
-plt.xlabel('Hz')
-plt.ylabel('dB')
-plt.legend()
-plt.show()
+dt7 = data7.as_matrix()
+dx7 = dt7[:,0]
+dy7 = dt7[:,1]
+t7 = 33.4835737179
+max7 = numpy.amax(dy7)
 
-plt.plot(dx1,dy1,'bd-', label = '80MHz spread', linewidth=1)
-plt.plot(dx3,dy3,'go-', label = '28.625801 C 9:10 pm', linewidth=1)
-plt.xlabel('Hz')
-plt.ylabel('dB')
-plt.legend()
-plt.show()
+dt8 = data8.as_matrix()
+dx8 = dt8[:,0]
+dy8 = dt8[:,1]
+t8 = 34.3724959936
+max8 = numpy.amax(dy8)
 
-plt.plot(dx1,dy1,'bd-', label = '80MHz spread', linewidth=1)
-plt.plot(dx4,dy4,'co-', label = '29.5648036859 C 10:24 pm', linewidth=1)
-plt.xlabel('Hz')
-plt.ylabel('dB')
-plt.legend()
-plt.show()
+dt9 = data9.as_matrix()
+dx9 = dt9[:,0]
+dy9 = dt9[:,1]
+t9 = 34.3724959936
+max9 = numpy.amax(dy8)
 
-plt.plot(dx1,dy1,'bd-', label = '80MHz spread', linewidth=1)
-plt.plot(dx5,dy5,'yo-', label = '30.0656049679 C 10:44 pm', linewidth=1)
-plt.xlabel('Hz')
-plt.ylabel('dB')
-plt.legend()
-plt.show()
+##################################
 
-plt.plot(dx1,dy1,'bd-', label = '80MHz spread', linewidth=1)
-plt.plot(dx6,dy6,'ko-', label = '30.0656049679 C 11:05 pm', linewidth=1)
-plt.xlabel('Hz')
-plt.ylabel('dB')
-plt.legend()
-plt.show()
+dt1a = data1a.as_matrix()
+dx1a = dt1a[:,0]
+dy1a = dt1a[:,1]
+max1a = numpy.amax(dy1a)
 
-print(max1, max2, max3, max4, max5, max6)
-temps = [t2, t3, t4, t5, t6]
-Max = [max2, max3, max4, max5, max6]
-plt.plot(t2, max2, 'ro', label = t2)
-plt.plot(t3, max3, 'go', label = t3)
-plt.plot(t4, max4, 'co', label = t4)
-plt.plot(t5, max5, 'yo', label = t5)
-plt.plot(t6, max6, 'ko', label = t6)
+
+dtfa = datafan.as_matrix()
+dxfa = dtfa[:,0]
+dyfa = dtfa[:,1]
+maxfa = numpy.amax(dyfa)
+
+
+dt2a = data2a.as_matrix()
+dx2a = dt2a[:,0]
+dy2a = dt2a[:,1]
+max2a = numpy.amax(dy2a)
+t2a = 28.8762019231
+
+dt3a = data3a.as_matrix()
+dx3a = dt3a[:,0]
+dy3a = dt3a[:,1]
+max3a = numpy.amax(dy3a)
+t3a = 28.61328125
+
+dt4a = data4a.as_matrix()
+dx4a = dt4a[:,0]
+dy4a = dt4a[:,1]
+max4a = numpy.amax(dy4a)
+t4a = 28.4505208333
+
+dt5a = data5a.as_matrix()
+dx5a = dt5a[:,0]
+dy5a = dt5a[:,1]
+max5a = numpy.amax(dy5a)
+t5a = 28.1750801282
+
+dt6a = data6a.as_matrix()
+dx6a = dt6a[:,0]
+dy6a = dt6a[:,1]
+max6a = numpy.amax(dy6a)
+t6a = 28.0874399038
+
+dt7a = data7a.as_matrix()
+dx7a = dt7a[:,0]
+dy7a = dt7a[:,1]
+max7a = numpy.amax(dy7a)
+t7a = 27.9371995192
+
+#dif2 = max2-max1
+diffan = maxfa-max1a
+dif3 = max3-max1
+dif4 = max4-max1
+dif5 = max5-max1
+dif6 = max6-max1
+dif7 = max7-max1
+dif8 = max8-max1
+dif9 = max9-max1
+dif2a = max2a-max1a
+dif3a = max3a-max1a
+dif4a = max4a-max1a
+dif5a = max5a-max1a
+dif6a = max6a-max1a
+dif7a = max7a-max1a
+
+gain = (dif4, dif5, dif6, dif7, dif8, dif9, dif2a, dif3a, dif4a, dif5a, dif6a, dif7a)
+print(gain)
+
+
+#print(max1, max2, max4, max5, max6, max7, max8, max9, max2a, max3a, max4a, max5a, max6a, max7a)
+temps = [t2, t4, t5, t6, t7, t8, t9, t2a, t3a, t4a, t5a, t6a, t7a]
+Max = [max2, max4, max5, max6, max7, max8, max9, max2a, max3a, max4a, max5a, max6a, max7a]
+#plt.plot(t2, max2, 'ro', label = t2)
+plt.plot(t4, dif4, 'co')#, label = t4)
+plt.plot(t5, dif5, 'yo')#, label = t5)
+plt.plot(t6, dif6, 'ko')#, label = t6)
+plt.plot(t7, dif7, 'mo')#, label = t7)
+plt.plot(t8, dif8, c='#48C9B0', marker='o')#, label = t8)
+plt.plot(t9, dif9, c='#DC7633', marker='o')#, label = t9)
+plt.plot(t2a, dif2a, c='#ff0045', marker='o')#, label = t2a)
+plt.plot(t3a, dif3a, c='#bca6f4', marker='o')#, label = t3a)
+plt.plot(t4a, dif4a, c='#850000', marker='o')#, label = t4a)
+plt.plot(t5a, dif5a, c='#c6e2ff', marker='o')#, label = t5a)
+plt.plot(t6a, dif6a, c='#034b59', marker='o')#, label = t6a)
+plt.plot(t7a, dif7a, c='#ffdd00', marker='o')#, label = t7a)
+plt.plot(t2a, diffan, c='#8b7d7b', marker='o', label = 'fan')
 plt.xlabel('temperature of amplifier (C)')
-plt.ylabel('max output (dB)')
+plt.ylabel('gain (dBm)')
+plt.legend()
+plt.show()
+print(temps)
+print(Max)
+
+#########################
+#new cell
+plt.plot(dx1,dy1,'b-', label = '80MHz spread', linewidth=1)
+plt.plot(dx3,dy3,'g-', label = '28.625801 C 9:10 pm', linewidth=1)
+plt.xlabel('Hz')
+plt.ylabel('dB')
+plt.legend()
+plt.show()
+
+plt.plot(dx1,dy1,'b-', label = '80MHz spread', linewidth=1)
+plt.plot(dx4,dy4,'c-', label = '29.5648036859 C 10:24 pm', linewidth=1)
+plt.xlabel('Hz')
+plt.ylabel('dB')
+plt.legend()
+plt.show()
+
+plt.plot(dx1,dy1,'b-', label = '80MHz spread', linewidth=1)
+plt.plot(dx5,dy5,'y-', label = '30.0656049679 C 10:44 pm', linewidth=1)
+plt.xlabel('Hz')
+plt.ylabel('dB')
+plt.legend()
+plt.show()
+
+plt.plot(dx1,dy1,'b-', label = '80MHz spread', linewidth=1)
+plt.plot(dx6,dy6,'k-', label = '31.5179286859 C 11:05 pm', linewidth=1)
+plt.xlabel('Hz')
+plt.ylabel('dB')
+plt.legend()
+plt.show()
+
+plt.plot(dx1,dy1,'b-', label = '80MHz spread', linewidth=1)
+plt.plot(dx7,dy7,'m-', label = '33.4835737179 C 11:05 pm', linewidth=1)
+plt.xlabel('Hz')
+plt.ylabel('dB')
+plt.legend()
+plt.show()
+
+plt.plot(dx1,dy1,'b-', label = '80MHz spread', linewidth=1)
+plt.plot(dx8,dy8,c='#48C9B0', label = '34.3724959936 C 11:05 pm', linewidth=1)
+plt.xlabel('Hz')
+plt.ylabel('dB')
+plt.legend()
+plt.show()
+
+plt.plot(dx1,dy1,'b-', label = '80MHz spread', linewidth=1)
+plt.plot(dx9,dy9,c='#DC7633', label = '34.3724959936 C 12:59 pm', linewidth=1)
+plt.xlabel('Hz')
+plt.ylabel('dB')
+plt.legend()
+plt.show()
+
+plt.plot(dx1a,dy1a,'b-', label = '80MHz spread', linewidth=1)
+plt.xlabel('Hz')
+plt.ylabel('dB')
+plt.legend()
+plt.show()
+
+plt.plot(dx1a,dy1a,'b-', label = '80MHz spread take 2', linewidth=1)
+plt.plot(dxfa,dyfa,c='#ff79c5', label = 'fan take unknown temp', linewidth=1)
+plt.xlabel('Hz')
+plt.xlabel('Hz')
+plt.ylabel('dB')
+plt.legend()
+plt.show()
+
+plt.plot(dx1a,dy1a,'b-', label = '80MHz spread take 2', linewidth=1)
+plt.plot(dx2a,dy2a,c='#ff0045', label = 'take round 2 15C 12:44 pm', linewidth=1)
+plt.xlabel('Hz')
+plt.xlabel('Hz')
+plt.ylabel('dB')
+plt.legend()
+plt.show()
+
+plt.plot(dx1a,dy1a,'b-', label = '80MHz spread take 2', linewidth=1)
+plt.plot(dx3a,dy3a,c='#bca6f4', label = '14.8C 2:22 pm', linewidth=1)
+plt.xlabel('Hz')
+plt.xlabel('Hz')
+plt.ylabel('dB')
 plt.legend()
 plt.show()
